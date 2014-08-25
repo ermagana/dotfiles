@@ -1,0 +1,19 @@
+{
+	"installed_packages":
+	[
+		"Dotfiles Syntax Highlighting",
+		"Generic Config",
+		"hosts",
+		"HTML-CSS-JS Prettify",
+		"Jasmine BDD",
+		"Javascript Beautify",
+		"Markdown Extended",
+		"nginx",
+		"Package Control",
+		"PhpBeautifier",
+		"PowerShell",
+		"PowershellUtils",
+		"Pretty JSON",
+		"SublimeLinter"
+	]
+}
