@@ -83,7 +83,7 @@ if ! [ -e $home/.gitconfig ]
 fi
 
 curdir="$curdir/sublimetext2"
-home="$APPDATA\SublimeText2\Packages\User"
+home="$APPDATA\Sublime Text 2\Packages\User"
 
 if ! [ -d "$home" ]
   then
@@ -94,7 +94,7 @@ IFS=$(echo -en "\n\b")
 
 for file in `ls $curdir -A`
 do
-  echo "file to be tested is $file"
+  #echo "file to be tested is $file"
   if ! [ -e "$home/$file" ]
     then
     symlink "$curdir/$file" "$home/$file"
