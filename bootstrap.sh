@@ -58,17 +58,15 @@ symlink() # target, link
   if [ "$mklink" = "ln -s" ]; then
     $mklink $target $link 
   elif [ -d "$target" ]; then
-    # cmd ${cmdslash}c rd "`wpath $link`" > /dev/null 2>&1
     $mklink ${cmdslash}d "`wpath $link`" "`wpath $target`"
-    # echo ${cmdslash}d "`wpath $link`" "`wpath $target`"
   else
-    # cmd ${cmdslash}c del "`wpath $link`" > /dev/null 2>&1
+    #echo "`wpath $link`" "`wpath $target`"
+    #echo "$mklink `wpath $link` `wpath $target`"
     $mklink "`wpath $link`" "`wpath $target`"
-    # echo "`wpath $link`" "`wpath $target`"
   fi
 }
 
-for file in `ls $curdir -A --ignore="*.md" --ignore="*.txt" --ignore="*.sh" --ignore=".git*"`
+for file in `ls $curdir -A --ignore="*.md" --ignore="*.txt" --ignore="*.sh" --ignore=".git*" --ignore="sublimetext2"`
 do
 	if ! [ -e ~/$file ]
 		then
@@ -78,8 +76,35 @@ do
 done
 
 # manually set the .git folder :(
-symlink "$curdir/.gitignore" "$home/.gitignore"
-symlink "$curdir/.gitconfig" "$home/.gitconfig"
+# symlink "$curdir/.gitignore" "$home/.gitignore"
+if ! [ -e $home/.gitconfig ]
+  then
+  symlink "$curdir/.gitconfig" "$home/.gitconfig"
+fi
+
+curdir="$curdir/sublimetext2"
+home="$APPDATA\SublimeText2\Packages\User"
+
+if ! [ -d "$home" ]
+  then
+  mkdir -p "$home"
+fi
+
+IFS=$(echo -en "\n\b")
+
+for file in `ls $curdir -A`
+do
+  echo "file to be tested is $file"
+  if ! [ -e "$home/$file" ]
+    then
+    symlink "$curdir/$file" "$home/$file"
+    # cmd link
+  else
+    echo "file exists $home/$file"
+  fi
+done
+
+IFS=$SAVEIFS
 
 unset link
 unset file
