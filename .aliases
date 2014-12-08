@@ -104,3 +104,4 @@ alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.ar
 # alias pumpitup="osascript -e 'set volume 10'"
 # alias hax="growlnotify -a 'Activity Monitor' 'System error' -m 'WTF R U DOIN'"
 alias freshen="rm -rf packages; rm -rf */bin; rm -rf */obj; rm *nupkg;nuget restore *sln; nuget update *sln -source axxess"
+alias msbuild="/C/Program\ Files\ \(x86\)/MSBuild/12.0/Bin/msbuild.exe"

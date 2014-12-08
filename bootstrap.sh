@@ -61,7 +61,7 @@ symlink() # target, link
     $mklink ${cmdslash}d "`wpath $link`" "`wpath $target`"
   else
     #echo "`wpath $link`" "`wpath $target`"
-    #echo "$mklink `wpath $link` `wpath $target`"
+    echo "$mklink `wpath $link` `wpath $target`"
     $mklink "`wpath $link`" "`wpath $target`"
   fi
 }

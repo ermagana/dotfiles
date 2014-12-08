@@ -5,6 +5,8 @@
 		"Generic Config",
 		"hosts",
 		"HTML-CSS-JS Prettify",
+		"HTML2Jade",
+		"Jade",
 		"Jasmine BDD",
 		"Javascript Beautify",
 		"Markdown Extended",
@@ -14,6 +16,8 @@
 		"PowerShell",
 		"PowershellUtils",
 		"Pretty JSON",
-		"SublimeLinter"
+		"Stylus",
+		"SublimeLinter",
+		"VBScript"
 	]
 }
