@@ -3,10 +3,10 @@ curdir=$(dirname $0)
 home=~
 
 if [ "$curdir" == "." ]
-	then
-		curdir=$PWD
-	else
-		curdir="$PWD/$curdir"
+  then
+    curdir=$PWD
+  else
+    curdir="$PWD/$curdir"
 fi
 
 echo $home
@@ -66,13 +66,13 @@ symlink() # target, link
   fi
 }
 
-for file in `ls $curdir -A --ignore="*.md" --ignore="*.txt" --ignore="*.sh" --ignore=".git*" --ignore="sublimetext2"`
+for file in `ls $curdir -A --ignore="*.md" --ignore="*.txt" --ignore="*.sh" --ignore=".git*" --ignore="sublimetext3"`
 do
-	if ! [ -e ~/$file ]
-		then
-		symlink "$curdir/$file" "$home/$file"
-		# cmd link
-	fi
+  if ! [ -e ~/$file ]
+    then
+    symlink "$curdir/$file" "$home/$file"
+    # cmd link
+  fi
 done
 
 # manually set the .git folder :(
@@ -82,8 +82,8 @@ if ! [ -e $home/.gitconfig ]
   symlink "$curdir/.gitconfig" "$home/.gitconfig"
 fi
 
-curdir="$curdir/sublimetext2"
-home="$APPDATA\Sublime Text 2\Packages\User"
+curdir="$curdir/sublimetext3"
+home="$APPDATA\Sublime Text 3\Packages\User"
 
 if ! [ -d "$home" ]
   then

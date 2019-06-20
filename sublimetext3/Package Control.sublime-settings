@@ -1,0 +1,17 @@
+{
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"Generic Config",
+		"Hosts",
+		"HTML-CSS-JS Prettify",
+		"Javascript Beautify",
+		"Package Control",
+		"PowerShell",
+		"Pretty JSON",
+		"SublimeLinter"
+	]
+}
