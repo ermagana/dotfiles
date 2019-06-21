@@ -8,24 +8,24 @@ elif infocmp xterm-256color >/dev/null 2>&1; then
     export TERM=xterm-256color
 fi
 
-if tput setaf 1 &> /dev/null; then
-    tput sgr0
-    if [[ $(tput colors) -ge 256 ]] 2>/dev/null; then
-        MAGENTA=$(tput setaf 9)
-        ORANGE=$(tput setaf 172)
-        GREEN=$(tput setaf 190)
-        PURPLE=$(tput setaf 141)
-        WHITE=$(tput setaf 256)
-    else
-        MAGENTA=$(tput setaf 5)
-        ORANGE=$(tput setaf 4)
-        GREEN=$(tput setaf 2)
-        PURPLE=$(tput setaf 1)
-        WHITE=$(tput setaf 7)
-    fi
-    BOLD=$(tput bold)
-    RESET=$(tput sgr0)
-else
+# if tput setaf 1 &> /dev/null; then
+#     tput sgr0
+#     if [[ $(tput colors) -ge 256 ]] 2>/dev/null; then
+#         MAGENTA=$(tput setaf 9)
+#         ORANGE=$(tput setaf 172)
+#         GREEN=$(tput setaf 190)
+#         PURPLE=$(tput setaf 141)
+#         WHITE=$(tput setaf 256)
+#     else
+#         MAGENTA=$(tput setaf 5)
+#         ORANGE=$(tput setaf 4)
+#         GREEN=$(tput setaf 2)
+#         PURPLE=$(tput setaf 1)
+#         WHITE=$(tput setaf 7)
+#     fi
+#     BOLD=$(tput bold)
+#     RESET=$(tput sgr0)
+# else
     MAGENTA="\033[1;31m"
     ORANGE="\033[1;33m"
     GREEN="\033[1;32m"
@@ -33,7 +33,7 @@ else
     WHITE="\033[1;37m"
     BOLD=""
     RESET="\033[m"
-fi
+# fi
 
 export MAGENTA
 export ORANGE
@@ -42,18 +42,6 @@ export PURPLE
 export WHITE
 export BOLD
 export RESET
-
-function parse_git_dirty() {
-   # check if we're in a git repo
-   git rev-parse --is-inside-work-tree &>/dev/null || return
-   [[ $(git status --porcelain --ignore-submodules 2>/dev/null ) != "" ]] && echo ' **changes**' 
-}
-
-function parse_git_branch() {
-   # check if we're in a git repo
-   git rev-parse --is-inside-work-tree &>/dev/null || return
-   git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1/"
-}
 
 # get current branch in git repo
 function parse_git_branch() {
@@ -107,8 +95,15 @@ function nonzero_return() {
    [ $RETVAL -ne 0 ] && echo " ($RETVAL)"
 }
 
-PS1="\[\e[1;31m\]\u\[\e[1;37m\] on \[\e[1;31m\]\h\[\e[1;37m\]:"
-PS1="${PS1} \[\e[31m\]\w \[\e[32m\]\T\[\e[m\]\[\e[1;31m\]\]\`nonzero_return\`"
-PS1="${PS1} \[\e[1;37m\]\]\`parse_git_branch\`\n\\$>\[\e[m\]\]"
+# \[
+#     begin a sequence of non-printing characters, which could be used to embed a terminal control sequence into the prompt
+#     this includes adding in control characters which change the color of the prompt
+# \]
+#     end a sequence of non-printing characters
+
+PS1="\[$MAGENTA\]\u\[$WHITE\] on \[$MAGENTA\]\h\[$WHITE\]:"
+PS1="${PS1} \[$GREEN\]\w \[$MAGENTA\]\`nonzero_return\`"
+PS1="${PS1} \[$WHITE\]\`parse_git_branch\`\n\[$GREEN\]\T \[$RESET\]\$ "
 
 export PS1
+export PS2="continue-> "
