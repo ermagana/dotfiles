@@ -1,6 +1,4 @@
-#set vsvim_usereditordefaults
-#set novsvim_useeditorindent
-set nonumber
+set number
 set backspace=indent,eol,start
 
 " Map esc
